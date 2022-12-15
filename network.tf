@@ -1,5 +1,6 @@
 module "dev_vpc_1" {
-  source             = "../modules/network"
+  source  = "app.terraform.io/devopsb30vinay/devopsb30-network/aws"
+  version = "1.0.0"
   vpc_cidr           = "10.90.0.0/16"
   vpc_name           = "dev_vpc_1"
   environment        = var.env
@@ -10,14 +11,16 @@ module "dev_vpc_1" {
 
 }
 module "dev_sg_1" {
-  source        = "../modules/sg"
+  source  = "app.terraform.io/devopsb30vinay/devopsb30-sg/aws"
+  version = "1.0.0"
   vpc_name      = module.dev_vpc_1.vpc_name
   vpc_id        = module.dev_vpc_1.vpc_id
   environment   = module.dev_vpc_1.environment
   service_ports = ["80", "443", "445", "8080", "22", "3389", "80", "443", "445", "8080", "22", "3389"]
 }
 module "dev_natgw_1" {
-  source           = "../modules/nat"
+  source  = "app.terraform.io/devopsb30vinay/devopsb30-nat/aws"
+  version = "1.0.0"
   public_subnet_id = module.dev_vpc_1.public_subnets_id_1
   vpc_name         = module.dev_vpc_1.vpc_name
   private_rt_id    = module.dev_vpc_1.private_route_table_id

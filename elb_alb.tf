@@ -1,5 +1,6 @@
 module "dev_elb_alb_1" {
-  source              = "../modules/elb-alb"
+  source  = "app.terraform.io/devopsb30vinay/devopsb30-elb-alb/aws"
+  version = "1.0.0"
   albname             = "devb30-alb"
   sg_id               = module.dev_sg_1.sg_id
   subnets             = module.dev_vpc_1.public_subnets_id

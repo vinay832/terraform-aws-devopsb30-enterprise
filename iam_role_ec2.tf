@@ -1,11 +1,13 @@
 module "dev_iam_1" {
-  source              = "../modules/iam"
+  source  = "app.terraform.io/devopsb30vinay/devopsb30-iam/aws"
+  version = "1.0.0"
   env                 = module.dev_vpc_1.environment
   rolename            = "devopsb30testrole"
   instanceprofilename = "devopsb30instprofile"
 }
 module "dev_compute_1" {
-  source = "../modules/compute"
+  source  = "app.terraform.io/devopsb30vinay/devopsb30-compute/aws"
+  version = "1.0.0"
   env    = module.dev_vpc_1.environment
   amis = {
     us-east-1 = "ami-04505e74c0741db8d" # ubuntu 20.04 LTS
